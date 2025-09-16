@@ -1,0 +1,10 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "cbm.h": "c",
+        "cx16.h": "c",
+        "stdio.h": "c",
+        "compare": "c",
+        "video_functions.h": "c"
+    }
+}

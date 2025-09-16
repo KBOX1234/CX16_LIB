@@ -1,19 +1,23 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
 
-unsigned int larg;
-int i;
+#include "cbm.h"
+
+#include "cx16.h"
+
+#include "../include/video_functions.h"
+
+
 
 int main() {
 
-    larg = 2;
+    char name[] = "Luke Richard Stanghelle";
 
-    for(i = 0; i < 15; i++){
-        i = i * 2;
+    copy_data_vram((uint16_t)name, strlen(name), VERA_INC_2, 0x1b000);
+
+    while(1){
+
     }
-
-    printf("big num: %d\n", larg);
-
-    return 0;
 
 }

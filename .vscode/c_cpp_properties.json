@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/local/share/cc65/include/"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/local/bin/cc65",
+            "cStandard": "c89",
+            "intelliSenseMode": "gcc-x86"
+        }
+    ],
+    "version": 4
+}
