@@ -10,7 +10,7 @@ void set_addr_inc(uint8_t inc_value){
     VERA.address_hi = (VERA.address_hi & 0b00000111) | inc_value;
 }
 
-void copy_data_vram(uint16_t addr, uint16_t size, uint8_t skip, unsigned long vram_addr){
+void copy_data_to_vram(uint16_t addr, uint16_t size, uint8_t skip, unsigned long vram_addr){
     uint16_t i;
     i = 0;
 
@@ -19,6 +19,21 @@ void copy_data_vram(uint16_t addr, uint16_t size, uint8_t skip, unsigned long vr
 
     while(i < size){
         VERA.data0 = *((uint8_t*)addr + i);
+
+        i++;
+    }
+    
+}
+
+void copy_data_from_vram(uint16_t addr, uint16_t size, uint8_t skip, unsigned long vram_addr){
+    uint16_t i;
+    i = 0;
+
+    select_vera_memory_addr(vram_addr);
+    set_addr_inc(skip);
+
+    while(i < size){
+        *((uint8_t*)addr + i) = VERA.data0;
 
         i++;
     }
