@@ -49,9 +49,15 @@ int main() {
 
     while(1){
 
+        if(color == 255) break;
+
         color++;
 
         vram_memset(0x1b001, size, VERA_INC_2, color);
     }
+
+    set_tile_color_depth(0b11);
+
+    while(1);
 
 }
