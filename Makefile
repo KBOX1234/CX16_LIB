@@ -1,5 +1,5 @@
 CC = cl65
-CFLAGS = -O -t cx16 -I/usr/local/share/cc65/include
+CFLAGS = -O -t cx16 -I/usr/local/share/cc65/include -IC:/cc65/include
 
 SRC_DIR = src
 BIN = MAIN.PRG

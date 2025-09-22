@@ -12,7 +12,7 @@
 
 int main() {
 
-    char name[] = "Luke Richard Stanghelle";
+    char name[] = "Luke Richard Stanghelle@";
 
     char new_tile[8] = {
         0b01010101,
@@ -27,6 +27,10 @@ int main() {
 
     char name2[200];
 
+    uint8_t color;
+
+    size_t size;
+
     copy_data_to_vram((uint16_t)name, strlen(name), VERA_INC_2, 0x1b000);
 
     copy_data_from_vram((uint16_t)name2, strlen(name), VERA_INC_2, 0x1b000);
@@ -39,8 +43,15 @@ int main() {
 
     printf("@%s\n", name2);
 
+    color = 0;
+
+    size = strlen(name);
+
     while(1){
 
+        color++;
+
+        vram_memset(0x1b001, size, VERA_INC_2, color);
     }
 
 }
