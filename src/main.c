@@ -13,15 +13,26 @@
 
 int main() {
 
-    uint8_t key;
+    uint8_t width;
 
-    while(1){
-        key = getin();
+    uint8_t height;
 
-        if(key == 'k') break;
 
-        vpoke(key, 0x1b000);
-    }
+    width = get_tile_map_width(0);
+
+    height = get_tile_map_height(0);
+
+    printf("default tile size:\nX = %d, Y = %d\n", width, height);
+
+    set_tile_height(0b00000011, 0);
+
+    set_tile_width(0b00000010, 0);
+
+    width = get_tile_map_width(0);
+
+    height = get_tile_map_height(0);
+
+    printf("new tile size:\nX = %d, Y = %d\n", width, height);
 
     return 0;
 
