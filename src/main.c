@@ -9,32 +9,25 @@
 #include "../include/video_functions.h"
 #include "../include/kernel_functions.h"
 
+#define MAPBASE_TILE_COUNT 128*64
 
+// Our default Tile and Map Base addresses
+unsigned long tileBaseAddr = 0x1F000;
+unsigned long mapBaseAddr = 0x1B000;
+unsigned char *filename = "tiles.bin";
 
-int main() {
+void main() {    
+    // Note we need a `short` here because there are more than 255 tiles
+    unsigned short i;
+    
+    // Turn on Color Depth 3 - 8 bpp
+    set_tile_color_depth(0b11, 1);
 
-    uint16_t addr;
+    // 16x16 pixel tiles
+    VERA.layer1.tilebase |= 0b11;
 
-    char* string;
+    load_file(filename, tileBaseAddr, 3);
 
-    EMULATOR.debug = true;
-
-    addr = 0x1667;
-
-    RAM_BANK = 1;
-
-    printf("crash test\n");
-
-    f_load_to_ram("test.t", addr);
-
-    string = (char*)addr;
-
-    RAM_BANK = 1;
-
-    printf("string: %s\n", (char*)addr + 1);
-
-    printf("yes\n");
-
-    return 0;
+    vram_memset(mapBaseAddr, MAPBASE_TILE_COUNT, VERA_INC_1, 0);
 
 }

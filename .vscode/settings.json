@@ -5,6 +5,8 @@
         "cx16.h": "c",
         "stdio.h": "c",
         "compare": "c",
-        "video_functions.h": "c"
+        "video_functions.h": "c",
+        "kernel_functions.h": "c",
+        "string.h": "c"
     }
 }

@@ -34,59 +34,15 @@ unsigned long entropy_get(){
 }
 
 uint8_t getin(){
-
     //call getin kernel api
     asm("jsr $FFE4");
 
 }
 
-void setnam(const char* fname){
-    ZERO_A = (uint8_t)strlen(fname);
-    ZERO_X = (uint8_t)((uint16_t)fname & 0xFF);
-    ZERO_Y = (uint8_t)(((uint16_t)fname >> 8) & 0xFF);
+void load_file(const char* fname, unsigned long addr, uint8_t ram_space){
+    cbm_k_setnam(fname);
 
-    asm("lda $0022");
-    asm("ldx $0023");
-    asm("ldy $0024");
-    asm("jsr $ffbd");
+    cbm_k_setlfs(0, 8, 2);
 
-}
-
-void setlfs(uint8_t file_num, uint8_t device_number, uint8_t secondary_address){
-    ZERO_A = file_num;
-    ZERO_X = device_number;
-    ZERO_Y = secondary_address;
-
-    asm("lda $0022");
-    asm("ldx $0023");
-    asm("ldy $0024");
-    asm("jsr $ffba");
-
-    
-}
-
-void f_load_to_ram(const char* fname, uint16_t addr){
-
-    //SETNAM
-    uint8_t lo;
-    uint8_t hi;
-
-    setnam(fname);
-
-    setlfs(3, 0x08, 0);
-
-
-    //LOAD
-    lo = addr & 0xFF;
-    hi = (addr >> 8) & 0xFF;
-    ZERO_X = lo;
-    ZERO_Y = hi;
-
-    asm("lda #$01");
-    asm("ldx $0023");
-    asm("ldy $0024");
-
-    //call load
-    asm("jsr $FFD5");
-
+    cbm_k_load(ram_space, addr);
 }
