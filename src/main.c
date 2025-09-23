@@ -13,26 +13,27 @@
 
 int main() {
 
-    uint8_t width;
+    uint16_t addr;
 
-    uint8_t height;
+    char* string;
 
+    EMULATOR.debug = true;
 
-    width = get_tile_map_width(0);
+    addr = 0x1667;
 
-    height = get_tile_map_height(0);
+    RAM_BANK = 1;
 
-    printf("default tile size:\nX = %d, Y = %d\n", width, height);
+    printf("crash test\n");
 
-    set_tile_height(0b00000011, 0);
+    f_load_to_ram("test.t", addr);
 
-    set_tile_width(0b00000010, 0);
+    string = (char*)addr;
 
-    width = get_tile_map_width(0);
+    RAM_BANK = 1;
 
-    height = get_tile_map_height(0);
+    printf("string: %s\n", (char*)addr + 1);
 
-    printf("new tile size:\nX = %d, Y = %d\n", width, height);
+    printf("yes\n");
 
     return 0;
 
