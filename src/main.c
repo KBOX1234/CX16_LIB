@@ -24,10 +24,14 @@ void main() {
     set_tile_color_depth(0b11, 1);
 
     // 16x16 pixel tiles
-    VERA.layer1.tilebase |= 0b11;
+    //VERA.layer1.tilebase |= 0b11;
 
     load_file(filename, tileBaseAddr, 3);
 
     vram_memset(mapBaseAddr, MAPBASE_TILE_COUNT, VERA_INC_1, 0);
+
+    videomode(VIDEOMODE_32x25);
+
+    while(1);
 
 }
