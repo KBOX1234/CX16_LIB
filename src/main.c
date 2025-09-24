@@ -14,14 +14,13 @@
 // Our default Tile and Map Base addresses
 unsigned long tileBaseAddr = 0x1F000;
 unsigned long mapBaseAddr = 0x1B000;
-const char *filename = "tiles.bin";
+const char *filename = "tile.bin";
+const char *pallet = "palet.bin";
 
 void main() {    
 
     uint8_t input;
-    
 
-    set_tile_map_color_depth(0b11, 1);
 
     // 16x16 pixel tiles
     //VERA.layer1.tilebase |= 0b11;
@@ -32,8 +31,11 @@ void main() {
     videomode(VIDEOMODE_20x15);
 
     load_file(filename, tileBaseAddr, 3);
+    load_file(pallet, 0x1fa00, 3);
 
     vram_memset(mapBaseAddr, MAPBASE_TILE_COUNT, VERA_INC_1, 0);
+
+    set_tile_map_color_depth(2, 1);
 
     while(1){
         input = getin();
