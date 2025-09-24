@@ -14,24 +14,42 @@
 // Our default Tile and Map Base addresses
 unsigned long tileBaseAddr = 0x1F000;
 unsigned long mapBaseAddr = 0x1B000;
-unsigned char *filename = "tiles.bin";
+const char *filename = "tiles.bin";
 
 void main() {    
-    // Note we need a `short` here because there are more than 255 tiles
-    unsigned short i;
+
+    uint8_t input;
     
-    // Turn on Color Depth 3 - 8 bpp
-    set_tile_color_depth(0b11, 1);
+
+    set_tile_map_color_depth(0b11, 1);
 
     // 16x16 pixel tiles
     //VERA.layer1.tilebase |= 0b11;
+
+    set_tile_map_height(0b00, 1);
+    set_tile_map_width(0b00, 1);
+
+    videomode(VIDEOMODE_20x15);
 
     load_file(filename, tileBaseAddr, 3);
 
     vram_memset(mapBaseAddr, MAPBASE_TILE_COUNT, VERA_INC_1, 0);
 
-    videomode(VIDEOMODE_32x25);
+    while(1){
+        input = getin();
 
-    while(1);
+        if(input == 'w'){
+            VERA.layer1.vscroll--;
+        }
+        if(input == 's'){
+            VERA.layer1.vscroll++;
+        }
+        if(input == 'a'){
+            VERA.layer1.hscroll--;
+        }
+        if(input == 'D'){
+            VERA.layer0.hscroll++;
+        }
+    }
 
 }

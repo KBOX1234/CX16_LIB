@@ -10,7 +10,7 @@ void set_addr_inc(uint8_t inc_value){
     VERA.address_hi = (VERA.address_hi & 0b00000111) | inc_value;
 }
 
-void set_tile_color_depth(uint8_t depth, uint8_t layer){
+void set_tile_map_color_depth(uint8_t depth, uint8_t layer){
 
     if(layer == 1){
 
@@ -29,7 +29,7 @@ void set_tile_color_depth(uint8_t depth, uint8_t layer){
     
 }
 
-void set_tile_width(uint8_t width, uint8_t layer){
+void set_tile_map_width(uint8_t width, uint8_t layer){
     if(layer == 1){
         VERA.layer1.config = (VERA.layer1.config & ~0b00110000) | ((width & 0x03) << 4);
 
@@ -40,7 +40,7 @@ void set_tile_width(uint8_t width, uint8_t layer){
     
 }
 
-void set_tile_height(uint8_t height, uint8_t layer){
+void set_tile_map_height(uint8_t height, uint8_t layer){
     if(layer == 1){
         VERA.layer1.config = (VERA.layer1.config & ~0b11000000) | ((height & 0x03) << 6);
 
