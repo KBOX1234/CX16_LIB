@@ -7,6 +7,13 @@
         "compare": "c",
         "video_functions.h": "c",
         "kernel_functions.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "memory": "c",
+        "array": "c",
+        "functional": "c",
+        "tuple": "c",
+        "utility": "c",
+        "generic_io.h": "c",
+        "stdint.h": "c"
     }
 }

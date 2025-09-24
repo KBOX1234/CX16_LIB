@@ -43,13 +43,13 @@ void main() {
         if(input == 'w'){
             VERA.layer1.vscroll--;
         }
-        if(input == 's'){
+        else if(input == 's'){
             VERA.layer1.vscroll++;
         }
-        if(input == 'a'){
+        else if(input == 'a'){
             VERA.layer1.hscroll--;
         }
-        if(input == 'D'){
+        else if(input == 'd'){
             VERA.layer0.hscroll++;
         }
     }
